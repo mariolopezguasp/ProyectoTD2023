@@ -23,4 +23,10 @@ subtitle: "Tratamiento de Datos. Grado en Ciencia de Datos- UV"
 
 # Introducción
 
+<<<<<<< HEAD
 Este documento explicativo..
+=======
+Este documento explicativo 
+
+prueba
+>>>>>>> 1ca43f26f3d2c48bd86f50457ba7ba32b1dcf054

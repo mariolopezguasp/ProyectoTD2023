@@ -23,10 +23,33 @@ subtitle: "Tratamiento de Datos. Grado en Ciencia de Datos- UV"
 
 # Introducción
 
-<<<<<<< HEAD
-Este documento explicativo..
-=======
-Este documento explicativo 
+Este documento explicativo
 
 prueba
->>>>>>> 1ca43f26f3d2c48bd86f50457ba7ba32b1dcf054
+
+# Importación de librerias
+
+```{r}
+library(tidyverse)
+```
+
+# Importación de archivos
+
+```{r}
+# Especificar la ruta del archivo FicheroDigital.dat
+ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroDigital.dat"
+
+# Abrir el archivo en modo binario y leer los datos
+archivo_binario <- file(ruta_archivo, "rb")
+datos_binarios <- readBin(archivo_binario, "integer", n = file.info(ruta_archivo)$size/4, endian = "little")
+close(archivo_binario)
+
+# Convertir los datos a una matriz con 9 columnas (1 para cada canal)
+datos <- matrix(as.numeric(datos_binarios), ncol = 9, byrow = TRUE)
+
+colnames(datos) <- c('HR1','HR2','MHR','TOCO','SPO2','VcP','Psistolica','Pdiastolica','Pmedia')
+```
+
+```{r}
+
+```

@@ -35,21 +35,73 @@ library(tidyverse)
 
 # Importación de archivos
 
+Lectura Fichero Digital
+
 ```{r}
 # Especificar la ruta del archivo FicheroDigital.dat
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroDigital.dat"
 
 # Abrir el archivo en modo binario y leer los datos
 archivo_binario <- file(ruta_archivo, "rb")
-datos_binarios <- readBin(archivo_binario, "integer", n = file.info(ruta_archivo)$size/4, endian = "little")
+datos_binarios <- readBin(archivo_binario, "raw", n = file.info(ruta_archivo)$size)
 close(archivo_binario)
 
 # Convertir los datos a una matriz con 9 columnas (1 para cada canal)
-datos <- matrix(as.numeric(datos_binarios), ncol = 9, byrow = TRUE)
+digital <- matrix(as.numeric(datos_binarios), ncol = 9, byrow = TRUE)
 
-colnames(datos) <- c('HR1','HR2','MHR','TOCO','SPO2','VcP','Psistolica','Pdiastolica','Pmedia')
+colnames(digital) <- c('HR1','HR2','MHR','TOCO','SPO2','VcP','Psistolica','Pdiastolica','Pmedia')
+```
+
+Lectura Cabeceras Fichero
+
+```{r}
+ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/cabecera_FicheroDigital.dat"
+
+# Abrir el archivo en modo binario y leer los datos
+archivo_binario <- file(ruta_archivo, "rb")
+datos_binarios <- readBin(archivo_binario, "raw", n = file.info(ruta_archivo)$size)
+close(archivo_binario)
+
+# Convertir los datos de fecha y hora a variables separadas
+fecha <- as.Date(sprintf("%02d-%02d-%02d", as.numeric(datos_binarios[1]), as.numeric(datos_binarios[2]), as.numeric(datos_binarios[3])), format = "%d-%m-%y")
+hora <- sprintf("%02d:%02d:%02d", as.numeric(paste0("0x", datos_binarios[4])), as.numeric(paste0("0x", datos_binarios[5])), as.numeric(paste0("0x", datos_binarios[6])))
+
+# Crear un dataframe con los datos
+cabecera_dig_df <- data.frame(fecha = fecha,
+                       hora = hora,
+                       frecuencia_muestreo = as.numeric(paste0("0x", datos_binarios[7])), num_canales = as.numeric(paste0("0x", datos_binarios[8])))
+
 ```
 
 ```{r}
+ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/cabecera_FicheroAnalogico.dat"
+
+# Abrir el archivo en modo binario y leer los datos
+archivo_binario <- file(ruta_archivo, "rb")
+fecha_hora <- readBin(archivo_binario, "raw", n = 6, size= 1, signed= FALSE)
+ADC <-  readBin(archivo_binario, "raw", n = 1, size= 1, signed= FALSE)
+voltaje <-  readBin(archivo_binario, "integer", n = 2, size= 2, signed= TRUE)
+Frecuencia <-  readBin(archivo_binario, "integer", n = 1, size= 2, signed= TRUE)
+close(archivo_binario)
+
+fecha <- as.Date(sprintf("%02d-%02d-%02d", as.numeric(fecha_hora[1]), as.numeric(fecha_hora[2]), as.numeric(fecha_hora[3])), format = "%d-%m-%y")
+
+hora <- sprintf("%02d:%02d:%02d", as.numeric(paste0("0x", fecha_hora[4])), as.numeric(paste0("0x", fecha_hora[5])), as.numeric(paste0("0x", fecha_hora[6])))
+
+cabecera_analo_df <- data.frame(fecha, hora, ADC, voltaje, Frecuencia)
+
+```
+
+Lectura Fichero Analogico
+
+```{r}
+ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroAnalogico.dat"
+
+# Abrir el archivo en modo binario y leer los datos
+archivo_binario <- file(ruta_archivo, "rb")
+datos_analogico <-  readBin(archivo_binario, "integer", n = file.info(ruta_archivo)$size, size= 2, signed= TRUE)
+close(archivo_binario)
+
+analogico <- matrix(as.numeric(datos_binarios), ncol = 1, byrow = TRUE)
 
 ```

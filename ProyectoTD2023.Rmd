@@ -64,13 +64,13 @@ cabecera_dig_df <- data.frame(fecha = fecha,
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroDigital.dat"
 
 ficheroB <- ruta_archivo
-A <- readBin(ficheroB, "integer", n = file.info(ficheroB)$size, endian = "little")
-HR1 <- A[seq(1, length(A), 9)]
-HR2 <- A[seq(2, length(A), 9)]
-MHR <- A[seq(3, length(A), 9)]
-TOCO <- A[seq(4, length(A), 9)]
-MSpO2 <- A[seq(5, length(A), 9)]
-VCP <- A[seq(6, length(A), 9)]
+A <- readBin(ficheroB, "raw", n = file.info(ficheroB)$size, endian = "little")
+HR1 <- A[seq(1, length(A[0:30000]), 9)]
+HR2 <- A[seq(2, length(A[0:30000]), 9)]
+MHR <- A[seq(3, length(A[0:30000]), 9)]
+TOCO <- A[seq(4, length(A[0:30000]), 9)]
+SpO2 <- A[seq(5, length(A[0:30000]), 9)]
+VCP <- A[seq(6, length(A[0:30000]), 9)]
 Psistolica <- A[seq(7, length(A), 9)]
 Pdiastolica <- A[seq(8, length(A), 9)]
 Pmedia <- A[seq(9, length(A), 9)]
@@ -85,9 +85,19 @@ colnames(digital) <- c('HR1','HR2','MHR','TOCO','SPO2','VcP','Psistolica','Pdias
 
 df_digital <- as.data.frame(digital)
 
-
+tensiómetro<- c('Psistolica','Pdiastolica','Pmedia')
 # grafica los datos
-plot(HR1)
+
+plot(HR1, type = 'l')
+plot(HR2, type = 'l')
+plot(MHR, type = 'l')
+plot(TOCO, type = 'l')
+plot(SpO2, type = 'l')
+plot(VCP, type = 'l')
+plot(Psistolica, type = 'l')
+plot(Pdiastolica, type = 'l')
+plot(Pmedia, type = 'l')
+
 ```
 
 Lectura Cabecera Fichero analogico

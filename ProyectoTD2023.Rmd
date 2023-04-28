@@ -137,11 +137,11 @@ ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroAnalogico.dat"
 
 ficheroA <- ruta_archivo
 f1 <- file(ficheroA, "rb")
-A <- readBin(f1, integer(), size = 2, n = file.info(ruta_archivo)$size, signed = TRUE)
+A <- readBin(f1, "integer", size = 2, n = file.info(ruta_archivo)$size, signed = TRUE)
 close(f1)
 
 Fm <- 1000
-t <- seq(0, length(A)/Fm, 1/Fm)
+t <- seq(0, (length(A)-1)/Fm, 1/Fm)
 vmax <- max(A)
 
 # tiempo de registro
@@ -149,11 +149,14 @@ hora <- ((length(A)/Fm)/60)/60
 min <- ((hora - floor(hora)) * 60)
 seg <- ((min - floor(min)) * 60)
 
-
+analogico <- data.frame(A, t)
 # texto informativo
 cat(sprintf("Tiempo de registro: %d horas, %d minutos y %d segundos\n", floor(hora), floor(min), floor(seg)))
 cat(sprintf("Frecuencia de muestreo: %i Hz\n", Fm))
 cat(sprintf("Voltaje máximo: %d miliVoltios\n", vmax))
 
-plot(t, type = 'l')
+redanalogicos <- subset(analogico, t > max(t)-2)
+
+ggplot(redanalogicos, aes(x=t, y=A)) + geom_line()
+
 ```

@@ -61,7 +61,7 @@ cabecera_dig_df <- data.frame(fecha = fecha,
 
 ```{r}
 # carga el archivo
-ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroDigital.dat"
+ruta_archivo <- "data/1059xlxveei79_ECGf2/27_09_2022/14.42.29_III_ECGyEXTyRESTO/FicheroDigital.dat"
 
 ficheroB <- ruta_archivo
 A <- readBin(ficheroB, "raw", n = file.info(ficheroB)$size, endian = "little")
@@ -69,7 +69,7 @@ HR1 <- A[seq(1, length(A[0:30000]), 9)]
 HR2 <- A[seq(2, length(A[0:30000]), 9)]
 MHR <- A[seq(3, length(A[0:30000]), 9)]
 TOCO <- A[seq(4, length(A[0:30000]), 9)]
-SpO2 <- A[seq(5, length(A[0:30000]), 9)]
+MSpO2 <- A[seq(5, length(A[0:30000]), 9)]
 VCP <- A[seq(6, length(A[0:30000]), 9)]
 Psistolica <- A[seq(7, length(A), 9)]
 Pdiastolica <- A[seq(8, length(A), 9)]
@@ -91,7 +91,7 @@ plot(HR1, type = 'l')
 plot(HR2, type = 'l')
 plot(MHR, type = 'l')
 plot(TOCO, type = 'l')
-plot(SpO2, type = 'l')
+plot(MSpO2, type = 'l')
 plot(VCP, type = 'l')
 plot(Psistolica, type = 'l')
 plot(Pdiastolica, type = 'l')
@@ -155,4 +155,5 @@ cat(sprintf("Tiempo de registro: %d horas, %d minutos y %d segundos\n", floor(ho
 cat(sprintf("Frecuencia de muestreo: %i Hz\n", Fm))
 cat(sprintf("Voltaje máximo: %d miliVoltios\n", vmax))
 
+plot(t, type = 'l')
 ```

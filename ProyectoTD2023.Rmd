@@ -46,9 +46,6 @@ f1 <- file(ficheroA, "rb")
 datos_binarios <- readBin(f1, "raw", 8)
 close(f1)
 
-# muestra los datos leídos
-datos_binarios
-
 # Convertir los datos de fecha y hora a variables separadas
 fecha <- as.Date(sprintf("%02d-%02d-%02d", as.numeric(datos_binarios[1]), as.numeric(datos_binarios[2]), as.numeric(datos_binarios[3])), format = "%d-%m-%y")
 hora <- sprintf("%02d:%02d:%02d", as.numeric(paste0("0x", datos_binarios[4])), as.numeric(paste0("0x", datos_binarios[5])), as.numeric(paste0("0x", datos_binarios[6])))
@@ -57,6 +54,9 @@ hora <- sprintf("%02d:%02d:%02d", as.numeric(paste0("0x", datos_binarios[4])), a
 cabecera_dig_df <- data.frame(fecha = fecha,
                        hora = hora,
                        frecuencia_muestreo = as.numeric(paste0("0x", datos_binarios[7])), num_canales = as.numeric(paste0("0x", datos_binarios[8])))
+
+# muestra los datos leídos
+cabecera_dig_df
 ```
 
 ```{r}
@@ -84,6 +84,7 @@ digital <- matrix(as.numeric(A), ncol = 9, byrow = TRUE)
 colnames(digital) <- c('HR1','HR2','MHR','TOCO','SPO2','VcP','Psistolica','Pdiastolica','Pmedia')
 
 df_digital <- as.data.frame(digital)
+head(df_digital)
 
 # grafica los datos
 
@@ -116,7 +117,6 @@ B <- readBin(f1, "integer", 3, signed = TRUE)
 # cierra el archivo
 close(f1)
 
-# muestra los datos leídos
 
 fecha <- as.Date(sprintf("%02d-%02d-%02d", as.numeric(fecha_hora[1]), as.numeric(fecha_hora[2]), as.numeric(fecha_hora[3])), format = "%d-%m-%y")
 
@@ -128,6 +128,8 @@ Frecuencia <- B[3]
 
 cabecera_analo_df <- data.frame(fecha, hora, ADC, voltaje, Frecuencia)
 
+# muestra los datos leídos
+cabecera_analo_df
 ```
 
 Lectura fichero analogico

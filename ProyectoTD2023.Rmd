@@ -23,9 +23,9 @@ subtitle: "Tratamiento de Datos. Grado en Ciencia de Datos- UV"
 
 # Introducción
 
-Este documento explicativo
+La empresa ACME Monitorización Fetal ha desarrollado un sistema propio que se encarga de almacenar en una tarjeta de memoria SD toda la información que es capturada por un dispositivo de monitorización fetal (cardiotocógrafo) comercial. 
 
-prueba
+Nuestro trabajo sera decodificar los datos en codigo binario, y una vez obtenidos, los trataremos y analizaremos para asi acabar visualizandolos.
 
 # Importación de librerias
 

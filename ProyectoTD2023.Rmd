@@ -37,6 +37,8 @@ library(tidyverse)
 
 Lectura Fichero Digital
 
+Primero empezaremos importando el fichero digital. Luego transformaremos los datos a binario para así poder leerlos. Convertimos los datos de fecha y hora en variables separadas. Una vez tenemos todo esto, convertimos los datos en un data frame y los visualizamos para asegurarnos que los tenemos.
+
 ```{r}
 # lee la cabecera del archivo
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/cabecera_FicheroDigital.dat"

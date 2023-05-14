@@ -104,6 +104,7 @@ plot(Pmedia, type = 'l')
 ```
 
 Lectura Cabecera Fichero analogico
+Luego seguimos importando la cabecera del fichero analogico. Transformaremos los datos a binario para así poder leerlos. Convertimos los datos de fecha y hora en variables separadas. Una vez tenemos todo esto, convertimos los datos en un data frame y los visualizamos para asegurarnos que los tenemos.
 
 ```{r}
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/cabecera_FicheroAnalogico.dat"
@@ -136,7 +137,7 @@ cabecera_analo_df
 ```
 
 Lectura fichero analogico
-
+Ahora vamos a realizar la lectura del fichero analogico. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las graficas de todos los datos.
 ```{r}
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroAnalogico.dat"
 

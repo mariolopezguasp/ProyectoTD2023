@@ -165,3 +165,20 @@ redanalogicos <- subset(analogico, t > max(t)-2)
 ggplot(redanalogicos, aes(x=t, y=A)) + geom_line()
 
 ```
+# Preguntas a responder
+
+¿Cómo varía el ritmo cardíaco fetal a lo largo del tiempo durante el parto?
+
+¿Hay alguna correlación entre el ritmo cardíaco fetal y la presión sanguínea materna durante el parto?
+
+¿Cuál es la relación entre la saturación de oxígeno fetal y el ritmo cardíaco durante el parto?
+
+¿Existe alguna diferencia notable en el ritmo cardíaco fetal entre el inicio y el final del parto?
+
+¿Cómo se comparan los niveles de presión sistólica y diastólica materna durante el parto?
+
+¿Hay alguna correlación entre la presión sanguínea materna y la saturación de oxígeno fetal durante el parto?
+
+¿Existen patrones o tendencias en el TOCO (tocodinamómetro) durante el parto?
+
+¿Se observan cambios significativos en los diferentes parámetros de monitorización fetal durante las diferentes etapas del parto?

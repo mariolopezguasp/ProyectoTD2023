@@ -178,9 +178,6 @@ ggplot(redanalogicos, aes(x=t, y=A)) + geom_line()
 ¿Cómo varía el ritmo cardíaco fetal a lo largo del tiempo durante el parto?
 
 ```{r}
-# Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
-filter_ritm <- df_digital[df_digital$HR1 != 0, ]
-
 #Representamos gráficamente:
 ggplot(df_digital) +
   geom_line(aes(x = 1:nrow(df_digital), y = HR1), color = "blue") +
@@ -263,9 +260,6 @@ Por lo que podemos argumentar que no tiene ninguna correlación el ritmo cardiac
 ¿Existe alguna diferencia notable en el ritmo cardíaco fetal entre el inicio y el final del parto?
 
 ```{r}
-# Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
-filter_spo2 <- df_digital[df_digital$HR1 != 0, ]
-
 #Representamos gráficamente:
 ggplot(df_digital) +
   geom_point(aes(x = 1:nrow(df_digital), y = HR1), color = "blue") +
@@ -287,8 +281,8 @@ Y al final del parto se puede observar como hay una subida notable y posteriorme
 #Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
 filter_sist <- df_digital[df_digital$Pdiastolica != 0 & df_digital$Psistolica != 0, ]
 
+#Vemos si existe correlación
 correlación_pres <- cor(filter_sist$Pdiastolica, filter_sist$Psistolica)
-
 correlación_pres
 
 #Representamos gráficamente:
@@ -342,10 +336,6 @@ Al observar el gráfico comprobamos como se asemeja más la sistólica.
 ¿Existen patrones o tendencias en el TOCO (tocodinamómetro) durante el parto?
 
 ```{r}
-# Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
-filter_sist <- df_digital[df_digital$TOCO != 0, ]
-
-
 #Representamos gráficamente:
 ggplot(df_digital) +
   geom_line(aes(x = 1:nrow(df_digital), y = TOCO), color = "green") +

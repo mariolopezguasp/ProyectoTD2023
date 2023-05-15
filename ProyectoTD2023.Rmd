@@ -23,9 +23,9 @@ subtitle: "Tratamiento de Datos. Grado en Ciencia de Datos- UV"
 
 # Introducción
 
-La empresa ACME Monitorización Fetal ha desarrollado un sistema propio que se encarga de almacenar en una tarjeta de memoria SD toda la información que es capturada por un dispositivo de monitorización fetal (cardiotocógrafo) comercial. 
+La empresa ACME Monitorización Fetal ha desarrollado un sistema propio que se encarga de almacenar en una tarjeta de memoria SD toda la información que es capturada por un dispositivo de monitorización fetal (cardiotocógrafo) comercial.
 
-Nuestro trabajo sera decodificar los datos en codigo binario, y una vez obtenidos, los trataremos y analizaremos para asi acabar visualizandolos.
+Nuestro trabajo sera decodificar los datos en código binario, y una vez obtenidos, los trataremos y analizaremos para asi acabar visualizandolos.
 
 # Importación de librerias
 
@@ -61,9 +61,10 @@ cabecera_dig_df <- data.frame(fecha = fecha,
 # muestra los datos leídos
 cabecera_dig_df
 ```
+
 Lectura fichero digital:
 
-Ahora vamos a realizar la lectura del fichero digital. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las graficas de todos los datos.
+Ahora vamos a realizar la lectura del fichero digital. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las gráficas de todos los datos.
 
 ```{r}
 # carga el archivo
@@ -106,9 +107,9 @@ plot(Pmedia, type = 'l')
 
 ```
 
-Lectura Cabecera Fichero analogico:
+Lectura Cabecera Fichero analógico:
 
-Luego seguimos importando la cabecera del fichero analogico. Transformaremos los datos a binario para así poder leerlos. Convertimos los datos de fecha y hora en variables separadas. Una vez tenemos todo esto, convertimos los datos en un data frame y los visualizamos para asegurarnos que los tenemos.
+Luego seguimos importando la cabecera del fichero analógico. Transformaremos los datos a binario para así poder leerlos. Convertimos los datos de fecha y hora en variables separadas. Una vez tenemos todo esto, convertimos los datos en un dataframe y los visualizamos para asegurarnos que los tenemos.
 
 ```{r}
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/cabecera_FicheroAnalogico.dat"
@@ -142,7 +143,8 @@ cabecera_analo_df
 
 Lectura fichero analogico:
 
-Ahora vamos a realizar la lectura del fichero analogico. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las graficas de todos los datos.
+Ahora vamos a realizar la lectura del fichero analógico. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las gráficas de todos los datos.
+
 ```{r}
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroAnalogico.dat"
 
@@ -172,7 +174,6 @@ ggplot(redanalogicos, aes(x=t, y=A)) + geom_line()
 
 ```
 
-
 # Preguntas a responder
 
 ¿Cómo varía el ritmo cardíaco fetal a lo largo del tiempo durante el parto?
@@ -190,7 +191,6 @@ ggplot(df_digital) +
 Como se puede observar en la grafica la variacion de pulsaciones tiende a estar entre las 100 y 200 pulsaciones.
 
 A lo largo del tiempo se pueden diferenciar tramos donde las contracciones varian bastante sobre todo al principio y a mitad del parto, y otros tramos donde vemos que estas se estabilizan, sobre todo llegando al final del parto.
-
 
 ¿Hay alguna correlación entre el ritmo cardíaco fetal y la presión sanguínea materna durante el parto?
 
@@ -219,13 +219,11 @@ ggplot(df_digital) +
 
 ```
 
-Vemos como existe una cieta correlación entre el ritmo cardiaco fetal y la presión sitolicam, no se observa la misma correlación con la presión diastolica.
+Vemos como existe una cieta correlación entre el ritmo cardíaco fetal y la presión sitolicam, no se observa la misma correlación con la presión diastolica.
 
-El coeficite de correlación en el caso de la sitolica llega al 0.5 y en el caso de la distolica no alcanza ni en 0.1.
+El coeficite de correlación en el caso de la sitolica llega al 0.5 y en el caso de la diastólica no alcanza ni en 0.1.
 
-También se puede observar con claridad como el el gráfico los puntos rojos correspondientes a la presión sistolica siempre están más cerca de los azules que
-son el ritmo cardiaco.
-
+También se puede observar con claridad como el el gráfico los puntos rojos correspondientes a la presión sistólica siempre están más cerca de los azules que son el ritmo cardíaco.
 
 ¿Cuál es la relación entre la saturación de oxígeno fetal y el ritmo cardíaco durante el parto?
 
@@ -251,11 +249,9 @@ ggplot(df_digital) +
 
 ```
 
-
 Vemos como la correlación es muy baja y además al observar la gráfica notamos que hay una gran dispersión entre los valores.
 
 Por lo que podemos argumentar que no tiene ninguna correlación el ritmo cardiaco con la saturación de oxígeno.
-
 
 ¿Existe alguna diferencia notable en el ritmo cardíaco fetal entre el inicio y el final del parto?
 
@@ -269,11 +265,9 @@ ggplot(df_digital) +
   theme_minimal()
 ```
 
-Como se puede observar, sí, hay diferencias notables en el ritmo cardíaco fetal entre el inicio y el final del parto. 
+Como se puede observar, sí, hay diferencias notables en el ritmo cardíaco fetal entre el inicio y el final del parto.
 
-Al principio es común que el ritmo cardíaco fetal fluctue ligeramente.
-Y al final del parto se puede observar como hay una subida notable y posteriormente un descenso de estas pulsaciones.
-
+Al principio es común que el ritmo cardíaco fetal fluctue ligeramente. Y al final del parto se puede observar como hay una subida notable y posteriormente un descenso de estas pulsaciones.
 
 ¿Cómo se comparan los niveles de presión sistólica y diastólica materna durante el parto?
 
@@ -295,10 +289,9 @@ ggplot(df_digital) +
   theme_minimal()
 ```
 
-Como se puede observar en la graficas, ambas presiones empiezan desde cero y se disparan al mismo tiempo hasta valores de casi 100 para la presion diastolica y superiores a 150 para la sistolica. 
+Como se puede observar en la graficas, ambas presiones empiezan desde cero y se disparan al mismo tiempo hasta valores de casi 100 para la presion diastolica y superiores a 150 para la sistolica.
 
 Una vez tienen esta subida, se mantienen en susu valores hasta casi el final del parto donde ambas tienen una pequeña bajada y nuevamente continuan siendo constantes.
-
 
 ¿Hay alguna correlación entre la presión sanguínea materna y la saturación de oxígeno fetal durante el parto?
 
@@ -331,8 +324,6 @@ Vemos como en este también tiene más correlación la presión sistólica aunqu
 
 Al observar el gráfico comprobamos como se asemeja más la sistólica.
 
-
-
 ¿Existen patrones o tendencias en el TOCO (tocodinamómetro) durante el parto?
 
 ```{r}
@@ -349,7 +340,6 @@ Si, como podemos observar en la grafica, tenemos un patron donde al principio ob
 
 Despues la otra mitad tiene un patron parecido pero esta vez sin una diferencia en los datos tan notable.
 
-
 ¿Se observan cambios significativos en los diferentes parámetros de monitorización fetal durante las diferentes etapas del parto?
 
 ```{r}
@@ -365,21 +355,19 @@ ggplot(df_digital) +
   theme_minimal()
 ```
 
-En parametros como el TOCO se puede ver que funcionan siguiendo una serie de patrones. 
+En parametros como el TOCO se puede ver que funcionan siguiendo una serie de patrones.
 
-En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios. 
+En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios.
 
 Y en los parametros que nos indican las presiones podemos observar que solamente tienen dos cambios, al principio del embarazo y al final.
 
-
 # Conclusión
 
-En este trabajo hemos podido observar como se hace un analisis y estudio de datos para una empresa, utilizando datos de un aparato de radiofrecuencia.
+En este trabajo hemos podido observar como se hace un análisis y estudio de datos para una empresa, utilizando datos de un aparato de radiofrecuencia.
 
 Esto es una lista de lo que hemos realizado:
 
-- Primero, hemos decodificado varios ficheros mediante codigo binario para poder utilizar los datos.
-- Una vez que teniamos los datos, hemos creado dataframes para poder almacenarlos y darles variables.
-- Luego hemos utilizado los plots para poder representar cada variable de los dataframes.
-- Una vez representado los datos, utilizando todo lo aprendido durante el curso hemos respondido mediante graficas y texto a una lista de preguntas planteadas anteriormente.
-
+-   Primero, hemos decodificado varios ficheros mediante código binario para poder utilizar los datos.
+-   Una vez que teniamos los datos, hemos creado dataframes para poder almacenarlos y darles variables.
+-   Luego hemos utilizado los plots para poder representar cada variable de los dataframes.
+-   Una vez representado los datos, utilizando todo lo aprendido durante el curso hemos respondido mediante gráficas y texto a una lista de preguntas planteadas anteriormente.

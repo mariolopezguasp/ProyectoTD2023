@@ -380,3 +380,16 @@ En parametros como el TOCO se puede ver que funcionan siguiendo una serie de pat
 En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios. 
 
 Y en los parametros que nos indican las presiones podemos observar que solamente tienen dos cambios, al principio del embarazo y al final.
+
+
+# Conclusión
+
+En este trabajo hemos podido observar como se hace un analisis y estudio de datos para una empresa, utilizando datos de un aparato de radiofrecuencia.
+
+Esto es una lista de lo que hemos realizado:
+
+- Primero, hemos decodificado varios ficheros mediante codigo binario para poder utilizar los datos.
+- Una vez que teniamos los datos, hemos creado dataframes para poder almacenarlos y darles variables.
+- Luego hemos utilizado los plots para poder representar cada variable de los dataframes.
+- Una vez representado los datos, utilizando todo lo aprendido durante el curso hemos respondido mediante graficas y texto a una lista de preguntas planteadas anteriormente.
+

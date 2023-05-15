@@ -171,6 +171,8 @@ redanalogicos <- subset(analogico, t > max(t)-2)
 ggplot(redanalogicos, aes(x=t, y=A)) + geom_line()
 
 ```
+
+
 # Preguntas a responder
 
 ¿Cómo varía el ritmo cardíaco fetal a lo largo del tiempo durante el parto?
@@ -187,6 +189,7 @@ ggplot(df_digital) +
   ggtitle("Variación") +
   theme_minimal()
 ```
+
 Como se puede observar en la grafica la variacion de pulsaciones tiende a estar entre las 100 y 200 pulsaciones.
 
 A lo largo del tiempo se pueden diferenciar tramos donde las contracciones varian bastante sobre todo al principio y a mitad del parto, y otros tramos donde vemos que estas se estabilizan, sobre todo llegando al final del parto.
@@ -271,6 +274,7 @@ ggplot(df_digital) +
   ggtitle("Diferencia") +
   theme_minimal()
 ```
+
 Como se puede observar, sí, hay diferencias notables en el ritmo cardíaco fetal entre el inicio y el final del parto. 
 
 Al principio es común que el ritmo cardíaco fetal fluctue ligeramente.
@@ -350,6 +354,7 @@ ggplot(df_digital) +
   ggtitle("Patrones") +
   theme_minimal()
 ```
+
 Si, como podemos observar en la grafica, tenemos un patron donde al principio obtenemos datos bajos pero despues se disparan multiplicandose por cuatro durante un periodo de tiempo mas corto, este patron se observa hasta la mitad del grafico.
 
 Despues la otra mitad tiene un patron parecido pero esta vez sin una diferencia en los datos tan notable.
@@ -369,6 +374,7 @@ ggplot(df_digital) +
   ggtitle("Parametros de monitorizacion") +
   theme_minimal()
 ```
+
 En parametros como el TOCO se puede ver que funcionan siguiendo una serie de patrones. 
 
 En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios. 

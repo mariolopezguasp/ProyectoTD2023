@@ -1,6 +1,6 @@
 ---
 title: "ProyectoTD2023"
-author: "Grupo J"
+author: "Grupo J: Javier Beny Rodriguez, Mario López Guasp, Pablo Gascó LLopis, Jaime Gómez-Trenor Cuñat, Julio Rodríguez Marqués"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -36,7 +36,7 @@ library(ggplot2)
 
 # Importación de archivos
 
-Lectura Fichero Digital
+Lectura Cabecera Fichero digital:
 
 Primero empezaremos importando la cabecera del fichero digital. Luego transformaremos los datos a binario para así poder leerlos. Convertimos los datos de fecha y hora en variables separadas. Una vez tenemos todo esto, convertimos los datos en un data frame y los visualizamos para asegurarnos que los tenemos.
 
@@ -61,8 +61,10 @@ cabecera_dig_df <- data.frame(fecha = fecha,
 # muestra los datos leídos
 cabecera_dig_df
 ```
+Lectura fichero digital:
 
 Ahora vamos a realizar la lectura del fichero digital. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las graficas de todos los datos.
+
 ```{r}
 # carga el archivo
 ruta_archivo <- "data/1059xlxveei79_ECGf2/27_09_2022/14.42.29_III_ECGyEXTyRESTO/FicheroDigital.dat"
@@ -104,7 +106,8 @@ plot(Pmedia, type = 'l')
 
 ```
 
-Lectura Cabecera Fichero analogico
+Lectura Cabecera Fichero analogico:
+
 Luego seguimos importando la cabecera del fichero analogico. Transformaremos los datos a binario para así poder leerlos. Convertimos los datos de fecha y hora en variables separadas. Una vez tenemos todo esto, convertimos los datos en un data frame y los visualizamos para asegurarnos que los tenemos.
 
 ```{r}
@@ -137,7 +140,8 @@ cabecera_analo_df <- data.frame(fecha, hora, ADC, voltaje, Frecuencia)
 cabecera_analo_df
 ```
 
-Lectura fichero analogico
+Lectura fichero analogico:
+
 Ahora vamos a realizar la lectura del fichero analogico. Cargamos el archivo y decodificamos el fichero en binario para poder leerlo. luego convertiremos los datos en una matriz y mediante las columnas realizamos las graficas de todos los datos.
 ```{r}
 ruta_archivo <- "data/0519xxxiii14/06_02_2023/14.20.34/FicheroAnalogico.dat"
@@ -267,7 +271,9 @@ ggplot(df_digital) +
   ggtitle("Diferencia") +
   theme_minimal()
 ```
-Como se puede observar, sí, hay diferencias notables en el ritmo cardíaco fetal entre el inicio y el final del parto. Al principio es común que el ritmo cardíaco fetal fluctue ligeramente.
+Como se puede observar, sí, hay diferencias notables en el ritmo cardíaco fetal entre el inicio y el final del parto. 
+
+Al principio es común que el ritmo cardíaco fetal fluctue ligeramente.
 Y al final del parto se puede observar como hay una subida notable y posteriormente un descenso de estas pulsaciones.
 
 
@@ -291,7 +297,9 @@ ggplot(df_digital) +
   theme_minimal()
 ```
 
-Como se puede observar en la graficas, ambas presiones empiezan desde cero y se disparan al mismo tiempo hasta valores de casi 100 para la presion diastolica y superiores a 150 para la sistolica. Una vez tienen esta subida, se mantienen en susu valores hasta casi el final del parto donde ambas tienen una pequeña bajada y nuevamente continuan siendo constantes.
+Como se puede observar en la graficas, ambas presiones empiezan desde cero y se disparan al mismo tiempo hasta valores de casi 100 para la presion diastolica y superiores a 150 para la sistolica. 
+
+Una vez tienen esta subida, se mantienen en susu valores hasta casi el final del parto donde ambas tienen una pequeña bajada y nuevamente continuan siendo constantes.
 
 
 ¿Hay alguna correlación entre la presión sanguínea materna y la saturación de oxígeno fetal durante el parto?
@@ -343,8 +351,8 @@ ggplot(df_digital) +
   theme_minimal()
 ```
 Si, como podemos observar en la grafica, tenemos un patron donde al principio obtenemos datos bajos pero despues se disparan multiplicandose por cuatro durante un periodo de tiempo mas corto, este patron se observa hasta la mitad del grafico.
-Despues la otra mitad tiene un patron parecido pero esta vez sin una diferencia en los datos tan notable.
 
+Despues la otra mitad tiene un patron parecido pero esta vez sin una diferencia en los datos tan notable.
 
 
 ¿Se observan cambios significativos en los diferentes parámetros de monitorización fetal durante las diferentes etapas del parto?
@@ -361,4 +369,8 @@ ggplot(df_digital) +
   ggtitle("Parametros de monitorizacion") +
   theme_minimal()
 ```
-En parametros como el TOCO se puede ver que funcionan siguiendo una serie de patrones. En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios. Y en los parametros que nos indican las presiones podemos observar que solamente tienen dos cambios, al principio del embarazo y al final.
+En parametros como el TOCO se puede ver que funcionan siguiendo una serie de patrones. 
+
+En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios. 
+
+Y en los parametros que nos indican las presiones podemos observar que solamente tienen dos cambios, al principio del embarazo y al final.

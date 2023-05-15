@@ -187,6 +187,7 @@ Como se puede observar en la grafica la variacion de pulsaciones tiende a estar 
 
 A lo largo del tiempo se pueden diferenciar tramos donde las contracciones varian bastante sobre todo al principio y a mitad del parto, y otros tramos donde vemos que estas se estabilizan, sobre todo llegando al final del parto.
 
+
 ¿Hay alguna correlación entre el ritmo cardíaco fetal y la presión sanguínea materna durante el parto?
 
 ```{r}
@@ -251,6 +252,7 @@ Vemos como la correlación es muy baja y además al observar la gráfica notamos
 
 Por lo que podemos argumentar que no tiene ninguna correlación el ritmo cardiaco con la saturación de oxígeno.
 
+
 ¿Existe alguna diferencia notable en el ritmo cardíaco fetal entre el inicio y el final del parto?
 
 ```{r}
@@ -268,7 +270,29 @@ ggplot(df_digital) +
 Como se puede observar, sí, hay diferencias notables en el ritmo cardíaco fetal entre el inicio y el final del parto. Al principio es común que el ritmo cardíaco fetal fluctue ligeramente.
 Y al final del parto se puede observar como hay una subida notable y posteriormente un descenso de estas pulsaciones.
 
+
 ¿Cómo se comparan los niveles de presión sistólica y diastólica materna durante el parto?
+
+```{r}
+#Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
+filter_sist <- df_digital[df_digital$Pdiastolica != 0 & df_digital$Psistolica != 0, ]
+
+correlación_pres <- cor(filter_sist$Pdiastolica, filter_sist$Psistolica)
+
+correlación_pres
+
+#Representamos gráficamente:
+ggplot(df_digital) +
+  geom_line(aes(x = 1:nrow(df_digital), y = Psistolica), color = "red") +
+  geom_line(aes(x = 1:nrow(df_digital), y = Pdiastolica), color = "blue") +
+  xlab("Muestras") +
+  ylab("Valores") +
+  ggtitle("Comparacion niveles de presion") +
+  theme_minimal()
+```
+
+Como se puede observar en la graficas, ambas presiones empiezan desde cero y se disparan al mismo tiempo hasta valores de casi 100 para la presion diastolica y superiores a 150 para la sistolica. Una vez tienen esta subida, se mantienen en susu valores hasta casi el final del parto donde ambas tienen una pequeña bajada y nuevamente continuan siendo constantes.
+
 
 ¿Hay alguna correlación entre la presión sanguínea materna y la saturación de oxígeno fetal durante el parto?
 
@@ -321,4 +345,20 @@ ggplot(df_digital) +
 Si, como podemos observar en la grafica, tenemos un patron donde al principio obtenemos datos bajos pero despues se disparan multiplicandose por cuatro durante un periodo de tiempo mas corto, este patron se observa hasta la mitad del grafico.
 Despues la otra mitad tiene un patron parecido pero esta vez sin una diferencia en los datos tan notable.
 
+
+
 ¿Se observan cambios significativos en los diferentes parámetros de monitorización fetal durante las diferentes etapas del parto?
+
+```{r}
+ggplot(df_digital) +
+  geom_point(aes(x = 1:nrow(df_digital), y = HR1), color = "blue") +
+  geom_point(aes(x = 1:nrow(df_digital), y = HR2), color = "blue") +
+  geom_point(aes(x = 1:nrow(df_digital), y = TOCO), color = "green") +
+  geom_point(aes(x = 1:nrow(df_digital), y = Psistolica), color = "red") +
+  geom_point(aes(x = 1:nrow(df_digital), y = Pdiastolica), color = "red") +
+  xlab("Muestras") +
+  ylab("Valores") +
+  ggtitle("Parametros de monitorizacion") +
+  theme_minimal()
+```
+En parametros como el TOCO se puede ver que funcionan siguiendo una serie de patrones. En otros parametros como el ritmo cardiaco son mas constantes aunque teniendo pequeños cambios. Y en los parametros que nos indican las presiones podemos observar que solamente tienen dos cambios, al principio del embarazo y al final.

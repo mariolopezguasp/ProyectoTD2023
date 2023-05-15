@@ -172,13 +172,103 @@ ggplot(redanalogicos, aes(x=t, y=A)) + geom_line()
 
 ¿Hay alguna correlación entre el ritmo cardíaco fetal y la presión sanguínea materna durante el parto?
 
+```{r}
+# Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
+filter_sist <- df_digital[df_digital$HR2 != 0 & df_digital$Psistolica != 0, ]
+filter_dist <- df_digital[df_digital$HR2 != 0 & df_digital$Pdiastolica != 0, ]
+
+#Vemos si existe correlación entre el ritmo cardiaco fetal y la presión sanguinea materna:
+
+correlación_sist <- cor(filter_sist$HR2, filter_sist$Psistolica)
+correlación_dist <- cor(filter_dist$HR2, filter_dist$Pdiastolica)
+
+correlación_sist
+correlación_dist
+
+#Representamos gráficamente:
+ggplot(df_digital) +
+  geom_point(aes(x = 1:nrow(df_digital), y = HR2), color = "blue") +
+  geom_point(aes(x = 1:nrow(df_digital), y = Psistolica), color = "red") +
+  geom_point(aes(x = 1:nrow(df_digital), y = Pdiastolica), color = "green") +
+  xlab("Muestras") +
+  ylab("Valores") +
+  ggtitle("Correlación") +
+  theme_minimal()
+
+```
+
+Vemos como existe una cieta correlación entre el ritmo cardiaco fetal y la presión sitolicam, no se observa la misma correlación con la presión diastolica.
+
+El coeficite de correlación en el caso de la sitolica llega al 0.5 y en el caso de la distolica no alcanza ni en 0.1.
+
+También se puede observar con claridad como el el gráfico los puntos rojos correspondientes a la presión sistolica siempre están más cerca de los azules que
+son el ritmo cardiaco.
+
+
 ¿Cuál es la relación entre la saturación de oxígeno fetal y el ritmo cardíaco durante el parto?
 
+```{r}
+# Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
+filter_spo2 <- df_digital[df_digital$HR2 != 0 & df_digital$SPO2!= 0, ]
+
+
+#Vemos si existe correlación entre el ritmo cardiaco fetal y la presión sanguinea materna:
+
+correlación_spo2 <- cor(filter_vcpo2$HR2, filter_vcpo2$SPO2)
+
+correlación_spo2
+
+#Representamos gráficamente:
+ggplot(df_digital) +
+  geom_point(aes(x = 1:nrow(df_digital), y = HR2), color = "blue") +
+  geom_point(aes(x = 1:nrow(df_digital), y = SPO2), color = "red") +
+  xlab("Muestras") +
+  ylab("Valores") +
+  ggtitle("Correlación") +
+  theme_minimal()
+
+```
+
+
+Vemos como la correlación es muy baja y además al observar la gráfica notamos que hay una gran dispersión entre los valores.
+
+Por lo que podemos argumentar que no tiene ninguna correlación el ritmo cardiaco con la saturación de oxígeno.
 ¿Existe alguna diferencia notable en el ritmo cardíaco fetal entre el inicio y el final del parto?
 
 ¿Cómo se comparan los niveles de presión sistólica y diastólica materna durante el parto?
 
 ¿Hay alguna correlación entre la presión sanguínea materna y la saturación de oxígeno fetal durante el parto?
+
+```{r}
+# Filtrar los datos para eliminar los valores igual a 0 en ambas variables:
+filter_sist <- df_digital[df_digital$SPO2 != 0 & df_digital$Psistolica != 0, ]
+filter_dist <- df_digital[df_digital$SPO2 != 0 & df_digital$Pdiastolica != 0, ]
+
+#Vemos si existe correlación entre el ritmo cardiaco fetal y la presión sanguinea materna:
+
+correlación_sist <- cor(filter_sist$SPO2, filter_sist$Psistolica)
+correlación_dist <- cor(filter_dist$SPO2, filter_dist$Pdiastolica)
+
+correlación_sist
+correlación_dist
+
+#Representamos gráficamente:
+ggplot(df_digital) +
+  geom_point(aes(x = 1:nrow(df_digital), y = SPO2), color = "blue") +
+  geom_point(aes(x = 1:nrow(df_digital), y = Psistolica), color = "red") +
+  geom_point(aes(x = 1:nrow(df_digital), y = Pdiastolica), color = "green") +
+  xlab("Muestras") +
+  ylab("Valores") +
+  ggtitle("Correlación") +
+  theme_minimal()
+
+```
+
+Vemos como en este también tiene más correlación la presión sistólica aunque en este caso negativamente, esta tiene una correlación de -0.56, lo que se puede considerar alta.
+
+Al observar el gráfico comprobamos como se asemeja más la sistólica.
+
+
 
 ¿Existen patrones o tendencias en el TOCO (tocodinamómetro) durante el parto?
 
